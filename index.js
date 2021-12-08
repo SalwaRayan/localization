@@ -13,13 +13,15 @@ const translation = require('./translation.json')
 
 
 app.get('/:lang?', (req, res) => {
-  const { lang } = req.params
-  const langue = lang
-
+  const lang = req.params.lang
+  if (!lang) {
+    lang = "fr"
+  } 
+  
   res.render('home', {
-    langue,
-    pageTitle: translation[langue].pageTitle,
-    title: translation[langue].title,
+    lang,
+    pageTitle: translation[lang].pageTitle,
+    title: translation[lang].title,
   })
 })
 
